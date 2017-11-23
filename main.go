@@ -3,16 +3,19 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"net/http"
+	"os"
+
+	"github.com/gorilla/handlers"
 )
 
 func main() {
-	router := NewRouter()
-
 	var port = flag.String("p", "3000", "Server port")
 	flag.Parse()
 
 	fmt.Println("Server listening on:", *port)
-	log.Fatal(http.ListenAndServe(":"+*port, router))
+
+	r := NewRouter()
+	loggedRouter := handlers.LoggingHandler(os.Stdout, r)
+	http.ListenAndServe(":"+*port, loggedRouter)
 }
