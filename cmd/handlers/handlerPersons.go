@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/rendyfebry/go-restful/cmd/models"
@@ -19,16 +20,19 @@ func HandlerPersons(w http.ResponseWriter, r *http.Request) {
 	var errDB error
 	c := session.DB("test_db").C("persons")
 
-	var results []models.Person
+	// var results []models.Person
+	var results []interface{}
 	errDB = c.Find(bson.M{}).Sort("-name").All(&results)
 
 	if errDB != nil {
 		panic(errDB)
 	}
 
+	fmt.Println(results)
+
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(results); err != nil {
+	if err := json.NewEncoder(w).Encode(&models.ResponseObj{Error: 0, Data: results}); err != nil {
 		panic(err)
 	}
 }
