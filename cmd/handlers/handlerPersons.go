@@ -4,15 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/rendyfebry/go-restful/cmd/models"
 	"github.com/rendyfebry/go-restful/cmd/utils"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
-
-type Person struct {
-	Name  string `json:"name"`
-	Phone string `json:"phone"`
-}
 
 func HandlerPersons(w http.ResponseWriter, r *http.Request) {
 	session := utils.GetMongoSession()
@@ -23,7 +19,7 @@ func HandlerPersons(w http.ResponseWriter, r *http.Request) {
 	var errDB error
 	c := session.DB("test_db").C("persons")
 
-	var results []Person
+	var results []models.Person
 	errDB = c.Find(bson.M{}).Sort("-name").All(&results)
 
 	if errDB != nil {
