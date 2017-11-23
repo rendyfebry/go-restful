@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/rendyfebry/go-restful/cmd/handlers"
+	"github.com/rendyfebry/go-restful/handlers"
 )
 
 type Route struct {

@@ -1,13 +1,10 @@
 package handlers
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rendyfebry/go-restful/cmd/models"
-	"github.com/rendyfebry/go-restful/cmd/utils"
+	"github.com/rendyfebry/go-restful/utils"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -28,11 +25,7 @@ func HandlerPersons(w http.ResponseWriter, r *http.Request) {
 		panic(errDB)
 	}
 
-	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(&models.ResponseObj{Error: 0, Data: results}); err != nil {
-		panic(err)
-	}
+	utils.SendJsonResponse(w, 0, "Success", results)
 }
 
 func HandlerPersonsSingle(w http.ResponseWriter, r *http.Request) {
@@ -52,22 +45,12 @@ func HandlerPersonsSingle(w http.ResponseWriter, r *http.Request) {
 
 	if errDB != nil {
 		if errDB.Error() == "not found" {
-			fmt.Println(errDB.Error())
-
-			w.Header().Set("Content-Type", "application/json;charset=UTF-8")
-			w.WriteHeader(http.StatusNotFound)
-			if err := json.NewEncoder(w).Encode(&models.ResponseObj{Error: 404, Message: "Not Found"}); err != nil {
-				panic(err)
-			}
+			utils.SendJsonResponse(w, 404, "Not Found", nil)
 			return
 		}
 
 		panic(errDB)
 	}
 
-	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(&models.ResponseObj{Error: 0, Data: result, Message: "Success"}); err != nil {
-		panic(err)
-	}
+	utils.SendJsonResponse(w, 0, "Success", result)
 }

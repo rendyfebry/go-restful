@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/rendyfebry/go-restful/cmd/utils"
+	"github.com/rendyfebry/go-restful/utils"
 )
 
 func NewRouter() *mux.Router {
