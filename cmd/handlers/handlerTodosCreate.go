@@ -1,14 +1,17 @@
-package main
+package handlers
 
 import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/rendyfebry/go-restful/cmd/models"
+	"github.com/rendyfebry/go-restful/cmd/utils"
 )
 
 func HandlerTodosCreate(w http.ResponseWriter, r *http.Request) {
-	var todo Todo
+	var todo models.Todo
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 
 	if err != nil {
@@ -28,7 +31,7 @@ func HandlerTodosCreate(w http.ResponseWriter, r *http.Request) {
 
 	// fmt.Println(todo)
 
-	t := RepoCreateTodo(todo)
+	t := utils.RepoCreateTodo(todo)
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusCreated)
 	if err := json.NewEncoder(w).Encode(t); err != nil {

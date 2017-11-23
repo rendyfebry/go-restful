@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"encoding/json"
@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/rendyfebry/go-restful/cmd/utils"
 )
 
 func HandlerTodosSingle(w http.ResponseWriter, r *http.Request) {
@@ -16,7 +17,7 @@ func HandlerTodosSingle(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	todo := RepoFindTodo(todoId)
+	todo := utils.RepoFindTodo(todoId)
 
 	if todo.Id > 0 {
 		w.Header().Set("Content-Type", "application/json;charset=UTF-8")
@@ -29,7 +30,7 @@ func HandlerTodosSingle(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusNotFound)
-	if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
+	if err := json.NewEncoder(w).Encode(utils.JsonErr{Code: http.StatusNotFound, Text: "Not Found"}); err != nil {
 		panic(err)
 	}
 }

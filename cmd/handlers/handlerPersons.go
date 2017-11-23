@@ -1,9 +1,10 @@
-package main
+package handlers
 
 import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/rendyfebry/go-restful/cmd/utils"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -14,7 +15,7 @@ type Person struct {
 }
 
 func HandlerPersons(w http.ResponseWriter, r *http.Request) {
-	session := getMongoSession()
+	session := utils.GetMongoSession()
 	defer session.Close()
 
 	session.SetMode(mgo.Monotonic, true)

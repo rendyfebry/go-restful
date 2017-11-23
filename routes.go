@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/rendyfebry/go-restful/cmd/handlers"
 )
 
 type Route struct {
@@ -18,30 +20,30 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		HandlerIndex,
+		handlers.HandlerIndex,
 	},
 	Route{
 		"Todos",
 		"GET",
 		"/todos",
-		HandlerTodos,
+		handlers.HandlerTodos,
 	},
 	Route{
 		"Todos Create",
 		"POST",
 		"/todos",
-		HandlerTodosCreate,
+		handlers.HandlerTodosCreate,
 	},
 	Route{
 		"Todos Single",
 		"GET",
 		"/todos/{todoId}",
-		HandlerTodosSingle,
+		handlers.HandlerTodosSingle,
 	},
 	Route{
 		"Persons",
 		"GET",
 		"/persons",
-		HandlerPersons,
+		handlers.HandlerPersons,
 	},
 }

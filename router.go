@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/rendyfebry/go-restful/cmd/utils"
 )
 
 func NewRouter() *mux.Router {
@@ -12,7 +13,7 @@ func NewRouter() *mux.Router {
 	for _, route := range routes {
 		var handler http.Handler
 		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
+		handler = utils.Logger(handler, route.Name)
 
 		router.
 			Methods(route.Method).

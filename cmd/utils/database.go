@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"crypto/tls"
@@ -12,7 +12,7 @@ import (
 
 var mgoSession *mgo.Session
 
-func getMongoSession() *mgo.Session {
+func GetMongoSession() *mgo.Session {
 	if mgoSession == nil {
 		err := godotenv.Load()
 		if err != nil {
