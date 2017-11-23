@@ -27,6 +27,12 @@ var routes = Routes{
 		HandlerTodos,
 	},
 	Route{
+		"Todos Create",
+		"POST",
+		"/todos",
+		HandlerTodosCreate,
+	},
+	Route{
 		"Todos Single",
 		"GET",
 		"/todos/{todoId}",
