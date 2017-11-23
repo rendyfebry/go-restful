@@ -24,13 +24,19 @@ var routes = Routes{
 		controllers.GetIndexPage,
 	},
 	Route{
-		"Persons",
+		"Get Persons",
 		"GET",
 		"/persons",
 		controllers.GetPersons,
 	},
 	Route{
-		"Persons",
+		"Create Person",
+		"POST",
+		"/persons",
+		controllers.CreatePerson,
+	},
+	Route{
+		"Get Single Person",
 		"GET",
 		"/persons/{email}",
 		controllers.GetPersonByEmail,
