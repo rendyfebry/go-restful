@@ -23,24 +23,6 @@ var routes = Routes{
 		handlers.HandlerIndex,
 	},
 	Route{
-		"Todos",
-		"GET",
-		"/todos",
-		handlers.HandlerTodos,
-	},
-	Route{
-		"Todos Create",
-		"POST",
-		"/todos",
-		handlers.HandlerTodosCreate,
-	},
-	Route{
-		"Todos Single",
-		"GET",
-		"/todos/{todoId}",
-		handlers.HandlerTodosSingle,
-	},
-	Route{
 		"Persons",
 		"GET",
 		"/persons",
