@@ -46,4 +46,10 @@ var routes = Routes{
 		"/persons",
 		handlers.HandlerPersons,
 	},
+	Route{
+		"Persons",
+		"GET",
+		"/persons/{email}",
+		handlers.HandlerPersonsSingle,
+	},
 }
