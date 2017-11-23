@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/rendyfebry/go-restful/handlers"
+	"github.com/rendyfebry/go-restful/controllers"
 )
 
 type Route struct {
@@ -20,18 +20,18 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		handlers.HandlerIndex,
+		controllers.HandlerIndex,
 	},
 	Route{
 		"Persons",
 		"GET",
 		"/persons",
-		handlers.HandlerPersons,
+		controllers.HandlerPersons,
 	},
 	Route{
 		"Persons",
 		"GET",
 		"/persons/{email}",
-		handlers.HandlerPersonsSingle,
+		controllers.HandlerPersonsSingle,
 	},
 }
