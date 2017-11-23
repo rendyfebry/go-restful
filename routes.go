@@ -38,4 +38,10 @@ var routes = Routes{
 		"/todos/{todoId}",
 		HandlerTodosSingle,
 	},
+	Route{
+		"Persons",
+		"GET",
+		"/persons",
+		HandlerPersons,
+	},
 }
