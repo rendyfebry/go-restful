@@ -9,7 +9,8 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-func HandlerPersons(w http.ResponseWriter, r *http.Request) {
+// GetPersons get all persons
+func GetPersons(w http.ResponseWriter, r *http.Request) {
 	session := utils.GetMongoSession()
 	defer session.Close()
 
@@ -25,10 +26,11 @@ func HandlerPersons(w http.ResponseWriter, r *http.Request) {
 		panic(errDB)
 	}
 
-	utils.SendJsonResponse(w, 0, "Success", results)
+	utils.SendJSONResponse(w, 0, "Success", results)
 }
 
-func HandlerPersonsSingle(w http.ResponseWriter, r *http.Request) {
+// GetPersonByEmail search person by email
+func GetPersonByEmail(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	email := vars["email"]
 
@@ -45,12 +47,12 @@ func HandlerPersonsSingle(w http.ResponseWriter, r *http.Request) {
 
 	if errDB != nil {
 		if errDB.Error() == "not found" {
-			utils.SendJsonResponse(w, 404, "Not Found", nil)
+			utils.SendJSONResponse(w, 404, "Not Found", nil)
 			return
 		}
 
 		panic(errDB)
 	}
 
-	utils.SendJsonResponse(w, 0, "Success", result)
+	utils.SendJSONResponse(w, 0, "Success", result)
 }

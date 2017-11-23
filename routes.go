@@ -6,6 +6,7 @@ import (
 	"github.com/rendyfebry/go-restful/controllers"
 )
 
+// Route (Data Type)
 type Route struct {
 	Name        string
 	Method      string
@@ -20,18 +21,18 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		controllers.HandlerIndex,
+		controllers.GetIndexPage,
 	},
 	Route{
 		"Persons",
 		"GET",
 		"/persons",
-		controllers.HandlerPersons,
+		controllers.GetPersons,
 	},
 	Route{
 		"Persons",
 		"GET",
 		"/persons/{email}",
-		controllers.HandlerPersonsSingle,
+		controllers.GetPersonByEmail,
 	},
 }

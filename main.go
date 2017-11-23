@@ -10,7 +10,7 @@ import (
 func main() {
 	router := NewRouter()
 
-	var port = flag.String("p", "8080", "Server port")
+	var port = flag.String("p", "3000", "Server port")
 	flag.Parse()
 
 	fmt.Println("Server listening on:", *port)
