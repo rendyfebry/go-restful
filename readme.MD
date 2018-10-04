@@ -12,3 +12,5 @@
 
 * Run Package
 > `go run ./*.go`
+
+* Test
